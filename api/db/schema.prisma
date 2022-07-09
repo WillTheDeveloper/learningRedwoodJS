@@ -12,6 +12,8 @@ model Post {
   id        Int      @id @default(autoincrement())
   title     String
   body      String
+  author    User    @relation(fields: [author_id], references: [id])
+  author_id Int
   createdAt DateTime @default(now())
 }
 
@@ -22,4 +24,5 @@ model User {
   salt                String    // <─┼─ add these lines
   resetToken          String?   // <─┤
   resetTokenExpiresAt DateTime? // <─┘
+  posts Post[]
 }
